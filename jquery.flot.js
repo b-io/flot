@@ -2014,7 +2014,12 @@ Licensed under the MIT license.
                         }
                         ctx.stroke();
                     } else {
-                        ctx.fillStyle = m.color || options.grid.markingsColor;
+                        if (m.colors) {
+                            spec = m;
+                        } else {
+                            spec = m.color || options.grid.markingsColor;
+                        }
+                        ctx.fillStyle = getColorOrGradient(spec, plotHeight, 0, "rgba(255, 255, 255, 0)");
                         ctx.fillRect(xrange.from, yrange.to,
                                      xrange.to - xrange.from,
                                      yrange.from - yrange.to);
